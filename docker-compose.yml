@@ -1,6 +1,7 @@
 services:
   web:
     build: ./app
+    image: 851725555906.dkr.ecr.us-east-1.amazonaws.com/testymctestface:django_docker_aws_web
     command: gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app/:/usr/src/app/
@@ -9,6 +10,7 @@ services:
       - 8000
   nginx:
     build: ./nginx
+    image: 851725555906.dkr.ecr.us-east-1.amazonaws.com/testymctestface:django_docker_aws_nginx
     volumes:
       - static_volume:/usr/src/app/static
     ports:
@@ -17,5 +19,3 @@ services:
       - web
 volumes:
   static_volume:
-
-
